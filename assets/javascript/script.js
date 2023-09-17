@@ -1,14 +1,18 @@
 var timerEl = document.getElementById('timer');
 var startEl = document.getElementById('startQuizButton');
+var optionsList = document.getElementById('options');
+var resultText = document.getElementById('result');
 
-var currentQuestion = 1
-var timeInterval
+var currentQuestion = 0;
+var timeInterval;
+var questions;
+var timerLeft;
 
 timerEl.textContent = "Click the Start Quiz button to begin!";
 
 // Set Countdown Timer //
 function startCountdown() {
-    var timeLeft = 30;
+    timeLeft = 30;
     timeInterval = setInterval(function () {
         if (timeLeft >= 1) {
           timerEl.textContent = timeLeft + " seconds left! QUICKER!";
@@ -26,14 +30,54 @@ startEl.addEventListener("click", function(event) {
     event.preventDefault();
     clearInterval(timeInterval);
     startCountdown();
+    currentQuestion = 0; 
     displayQuestion();
     startEl.style.display = "none";
     document.getElementById('question').style.display = "block";
     document.getElementById('options').style.display = "block";
+    resultText.textContent = "";
 });
 
+// Quiz functionality //
+document.getElementById('options').addEventListener("click", function (event) {
+        if (event.target.tagName === 'INPUT') {
+        var selectedValue = event.target.value;
+        var correctAnswer = questions[currentQuestion].correctAnswer;
+
+        if (selectedValue === correctAnswer) {
+            document.getElementById('result').style.display = "block";
+            resultText.textContent = "Correct!";
+            resultText.style.color = "green";
+
+            setTimeout(function () {
+                resultText.textContent = "";
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    displayQuestion();
+                } else {
+                    resultText.textContent = "QUIZ OVER!";
+                }
+            }, 2000); 
+
+        } else {
+            document.getElementById('result').style.display = "block";
+            resultText.textContent = "Wrong!";
+            resultText.style.color = "red";
+            timeLeft -= 5;
+
+            if (timeLeft <= 0) {
+                timerEl.textContent = "Times up!";
+                clearInterval(timeInterval);
+            } else {
+                timerEl.textContent = timeLeft + " seconds left!";
+            }
+        }
+    }
+});
+
+
 // Quiz Questions and answers as an array //
-var questions = [
+questions = [
     {
         question: "What is a variable?",
         options: ["someone who is very able at coding", "containers for storing data", "one of many things that could go wrong"],
@@ -52,8 +96,8 @@ var questions = [
 ]
 
 function displayQuestion() {
-    var questionData = questions[currentQuestion - 1];
-    document.getElementById('question').innerHTML = "Question " + currentQuestion + ": " + questionData.question;
+    var questionData = questions[currentQuestion];
+    document.getElementById('question').innerHTML = "Question " + (currentQuestion +1) + ": " + questionData.question;
     var optionsHtml = '';
 
     questionData.options.forEach(function (option, index) {
