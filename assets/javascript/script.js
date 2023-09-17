@@ -94,7 +94,7 @@ questions = [
         correctAnswer: "c"
     },
     {
-        question: "What does 'else if' used to specify?",
+        question: "What is 'else if' used to specify?",
         options: ["a new condition to test, if the first condition is false", "an offer that you can't refuse", "an inability to choose between two pizza toppings"],
         correctAnswer: "a"
     },
