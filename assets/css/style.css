@@ -21,6 +21,7 @@
     margin: 0; 
     text-align: left;
     color: blue;
+    cursor: pointer;
 }
 
 /* Body */
@@ -87,6 +88,11 @@ body {
     font-weight: bold;
     font-size: 20px;
     line-height: 2;
+}
+
+#options label {
+    display: block;
+    margin-bottom: 10px;
 }
 
 #result {
