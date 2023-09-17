@@ -10,7 +10,8 @@
   </head>
 
   <header>
-    <div class="container">
+    <div class="container header-container">
+        <h2 id="highscores" onclick="savedScores()">High Sores!!!</h2>
         <h2 id="timer" class="timer-top-right"></h2>
     </div>
   </header>
@@ -35,6 +36,24 @@
     </div>
     <div id="result">
     </div>    
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Save Score!</h2>
+          <p>Your Initials:</p>
+          <input type="text" id="initials" placeholder="Your Initials" maxlength="3">
+          <button id="saveScore">Save</button>
+        </div>
+      </div>
+
+      <div id="savedScores" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeScoresModal()">&times;</span>
+            <h2>High Scores</h2>
+            <ul id="savedScoresList"></ul>
+        </div>
+    </div>
 
     <script src="assets/javascript/script.js"></script>
   </body>

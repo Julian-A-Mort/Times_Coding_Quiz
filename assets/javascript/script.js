@@ -1,12 +1,15 @@
+//d efine elements to manipulate //
 var timerEl = document.getElementById('timer');
 var startEl = document.getElementById('startQuizButton');
 var optionsList = document.getElementById('options');
 var resultText = document.getElementById('result');
 
+// define variables //
 var currentQuestion = 0;
 var timeInterval;
 var questions;
 var timerLeft;
+var yourScore = 0;
 
 timerEl.textContent = "Click the Start Quiz button to begin!";
 
@@ -48,6 +51,7 @@ document.getElementById('options').addEventListener("click", function (event) {
             document.getElementById('result').style.display = "block";
             resultText.textContent = "Correct!";
             resultText.style.color = "green";
+            yourScore++;
 
             setTimeout(function () {
                 resultText.textContent = "";
@@ -56,8 +60,9 @@ document.getElementById('options').addEventListener("click", function (event) {
                     displayQuestion();
                 } else {
                     resultText.textContent = "QUIZ OVER!";
+                    showModal(yourScore);
                 }
-            }, 2000); 
+            }, 1000); 
 
         } else {
             document.getElementById('result').style.display = "block";
@@ -95,6 +100,7 @@ questions = [
     },
 ]
 
+// question functionaility //
 function displayQuestion() {
     var questionData = questions[currentQuestion];
     document.getElementById('question').innerHTML = "Question " + (currentQuestion +1) + ": " + questionData.question;
@@ -106,3 +112,64 @@ function displayQuestion() {
 
     document.getElementById('options').innerHTML = optionsHtml;
 }
+
+// Save Score Modal Function //
+function showModal(score) {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+
+    // style and function the close element, add the "x" button
+    // Add text and display the score
+    // Create input field for initials and placeholder text
+    // save the score function
+
+    var modalContent = document.querySelector('.modal-content');
+    modalContent.innerHTML = `
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Save Your Score</h2>
+      <p>Your score: ${score}</p>
+      <p>Enter your initials:</p>
+      <input type="text" id="initials" placeholder="Your Initials Here!">
+      <button id="saveScore" onclick="saveScore()">Save</button>
+    `;
+  }
+  
+  function closeModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'none';
+  }
+  
+  function saveScore() {
+    var initialsInput = document.getElementById('initials');
+    var initials = initialsInput.value;
+    var score = yourScore;
+  
+    var scores = JSON.parse(localStorage.getItem('scores')) || [];
+    scores.push({ initials: initials, score: score });
+    localStorage.setItem('scores', JSON.stringify(scores));
+    initialsInput.value = '';
+
+    closeModal();
+  }
+  
+// Modal Function for High Scores //
+function savedScores() {
+    var modal = document.getElementById('savedScores');
+    modal.style.display = 'block';
+
+    var savedScoreList = document.getElementById('savedScoresList');
+    savedScoresList.innerHTML = '';
+
+    var scores = JSON.parse(localStorage.getItem('scores')) || [];
+
+    scores.forEach(function (score) {
+        var listItem = document.createElement('li');
+        listItem.textContent = score.initials + ': ' + score.score;
+        savedScoresList.appendChild(listItem);
+      });
+    }
+  
+  function closeScoresModal() {
+    var modal = document.getElementById('savedScores');
+    modal.style.display = 'none';
+  }

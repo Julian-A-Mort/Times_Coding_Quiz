@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+/* Header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+}
+
+.timer-top-right {
+    text-align: right;
+    margin: 0px; 
+}
+
+#highscores {
+    margin: 0; 
+    text-align: left;
+    color: blue;
+}
+
+/* Body */
 body {
   font-size: 16px;
   font-family: "Roboto", sans-serif;
@@ -25,21 +45,16 @@ body {
   .container {
     margin: auto;
     width: 100%;
-    height: 100px;
+    height: 10px;
     text-align: center;
   }
-
-  .timer-top-right {
-    position: absolute;
-    top: 10px; 
-    right: 10px;
-}
 
 .start-button {
     text-align: center;
     margin: 2px auto;
     padding: 10px;
 }
+
 
 /* Styling for quiz */
 #question {
@@ -92,3 +107,34 @@ body {
 #question, #options, #result {
     display:none;
 }
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+  }
