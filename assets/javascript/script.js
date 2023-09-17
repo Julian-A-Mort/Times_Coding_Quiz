@@ -1,11 +1,14 @@
 var timerEl = document.getElementById('timer');
-var mainEl = document.getElementById('main');
+var startEl = document.getElementById('startQuizButton');
 
+var timeInterval
+
+timerEl.textContent = "Click the Start Quiz button to begin!";
 
 // Set Countdown Timer //
-function countdown() {
+function startCountdown() {
     var timeLeft = 30;
-    var timeInterval = setInterval(function () {
+    timeInterval = setInterval(function () {
         if (timeLeft >= 1) {
           timerEl.textContent = timeLeft + " seconds left! QUICKER!";
           timeLeft--
@@ -17,4 +20,9 @@ function countdown() {
         }, 1000);
       }
 
-      countdown();
+// Start the timer //
+startEl.addEventListener("click", function(event) {
+    event.preventDefault();
+    clearInterval(timeInterval);
+    startCountdown();
+});

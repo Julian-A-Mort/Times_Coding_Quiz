@@ -21,18 +21,6 @@ body {
     padding: 20px;
     width: 60vw;
   }
-  
-  .card::after {
-    content: " ";
-    display: block;
-    clear: both;
-  }
-  
-  .clearfix::after {
-    content: " ";
-    display: block;
-    clear: both;
-  }
 
   .container {
     margin: auto;
@@ -45,4 +33,10 @@ body {
     position: absolute;
     top: 10px; 
     right: 10px;
+}
+
+.start-button {
+    text-align: center;
+    margin: 2px auto;
+    padding: 10px;
 }
