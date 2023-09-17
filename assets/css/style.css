@@ -40,3 +40,40 @@ body {
     margin: 2px auto;
     padding: 10px;
 }
+
+/* Styling for quiz */
+#question {
+    display: block;
+    background-color:#b2afc0;;
+    border: 1px solid #eceff1;
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+    margin: 80px auto;
+    padding: 20px;
+    width: 60vw;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 2;
+}
+
+#options {
+    display: block;
+    background-color:#aeaff1;;
+    border: 1px solid #eceff1;
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 60vw;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 2;
+}
+
+#question, #options {
+    display:none;
+}
